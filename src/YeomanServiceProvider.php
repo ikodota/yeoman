@@ -23,33 +23,34 @@ class YeomanServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->publish();
-        //$this->mergeConfigFrom(__DIR__.'../config/yeoman.php', 'yeoman');
-        //$this->loadMigrationsFrom(__DIR__.'/../databases/migrations');
-        //$this->loadViewsFrom(__DIR__.'/../resources/views', 'yeoman');
-        //$this->loadTranslationsFrom(__DIR__.'../resources/lang', 'yeoman');
-
+        $this->mergeConfigFrom(__DIR__.'/../config/yeoman.php', 'yeoman');
+        $this->loadViewsFrom(__DIR__.'/views', 'yeoman');
+        $this->loadMigrationsFrom(__DIR__.'/../databases/migrations');
+        $this->loadTranslationsFrom(__DIR__.'/../translations','yeoman');
         //路由
-        if (! $this->app->routesAreCached()) {
-            require __DIR__.'/routes.php';
-        }
+        $this->loadRoutesFrom(__DIR__.'/routes.php');
+
+        $this->publish();
+
     }
 
     public function publish()
     {
+
+
         //发布配置文件
         $this->publishes([
             __DIR__.'/../config/' => config_path('/'),
         ],'config');
 
         //发布迁移文件
-        $this->publishes([
+        /*$this->publishes([
             __DIR__.'/../databases/migrations/' => database_path('/migrations')
-        ], 'migrations');
+        ], 'migrations');*/
 
-        $this->publishes([
+       /* $this->publishes([
             __DIR__.'/../databases/seeds/' => database_path('/seeds'),
-        ], 'seeds');
+        ], 'seeds');*/
 
         /*//发布控制器/中间件和Request
         $this->publishes([

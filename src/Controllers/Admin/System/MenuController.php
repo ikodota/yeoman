@@ -18,7 +18,7 @@ class MenuController extends Controller
     {
         //$menus = Menu::paginate(25);
         $menus = MenuTree::createLevelTree(Menu::all());
-        return view('admin.menu.index', compact('menus'));
+        return view('yeoman::admin.menu.index', compact('menus'));
     }
 
     /**
@@ -30,7 +30,7 @@ class MenuController extends Controller
     {
         $tree = MenuTree::createLevelTree(Menu::all());
 
-        return view('admin.menu.create', compact('tree'));
+        return view('yeoman::admin.menu.create', compact('tree'));
     }
 
     /**
@@ -76,7 +76,7 @@ class MenuController extends Controller
         $menu = Menu::find($id);
         $tree = MenuTree::createLevelTree(Menu::all());
 
-        return view('admin.menu.edit', compact('menu', 'tree'));
+        return view('yeoman::admin.menu.edit', compact('menu', 'tree'));
     }
 
     /**

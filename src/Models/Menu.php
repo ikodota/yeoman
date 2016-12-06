@@ -37,15 +37,16 @@ class Menu extends Model
         </li>*/
         $html = "";
         foreach ($tree as $menu) {
-            if (empty($menu->permission) || (Gate::foruser(Auth::guard('admin')->user())->allows($menu->permission)) ) {
+            //if (empty($menu->permission) || (Gate::foruser(Auth::guard('admin')->user())->allows($menu->permission)) ) {
                 if ($menu->child) {
                     //$html .= '<li class="treeview">' . '<a><i class="fa fa-bars"></i> <span>' . $menu->name . '</span><i class="fa fa-angle-left pull-right"></i></a>' . '<ul class="treeview-menu">' . self::showSidebar($menu->child) . '</ul>' . '</li>';
-                    $html .= '<li style="display: none;"><a><i class="fa ' . $menu->icon . '"></i> ' . $menu->name . ' <span class="fa fa-chevron-down pull-right"></span></a><ul class="nav child_menu">' . self::showSidebar($menu->child) . '</ul></li>';
+                    $html .= '<li style="display: none;"><a><i class="fa ' . $menu->icon . '"></i> ' . $menu->display_name . ' <span class="fa fa-chevron-down pull-right"></span></a><ul class="nav child_menu">' . self::showSidebar($menu->child) . '</ul></li>';
                 } else {
+                    $route= empty($menu->route) ? '/' : $menu->route;
                     //$html .= '<li><a href="' . route($menu->url) . '"><i class="fa fa-bars"></i><span> ' . $menu->name . '</span></a></li>';
-                    $html .= '<li><a href="' . url($menu->url) . '"><i class="fa '.$menu->icon.'"></i>' . $menu->name . '</a></li>';
+                    $html .= '<li><a href="' . route($route) . '"><i class="fa '.$menu->icon.'"></i>' . $menu->display_name . '</a></li>';
                 }
-            }
+
         }
         return $html;
     }

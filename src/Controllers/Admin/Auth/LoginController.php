@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Auth;
+namespace Ikodota\Yeoman\Controllers\Admin\Auth;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Ikodota\Yeoman\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -55,14 +55,15 @@ class LoginController extends Controller
     {
         $credentials= $request->only($this->username(), 'password');
         //附加一个认证字段
-        $credentials =array_merge($credentials,['is_admin'=>1]);
+        //$credentials =array_merge($credentials,['is_admin'=>1]);
         return $credentials;
     }
 
 
     public function showLoginForm()
     {
-        return view('admin.auth.login');
+        //return view('admin.auth.login');
+        return view('yeoman::admin.auth.login');
     }
 
 
