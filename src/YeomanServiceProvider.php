@@ -51,7 +51,7 @@ class YeomanServiceProvider extends ServiceProvider
             __DIR__.'/../databases/seeds/' => database_path('/seeds'),
         ], 'seeds');
 
-        //发布控制器/中间件和Request
+        /*//发布控制器/中间件和Request
         $this->publishes([
             __DIR__.'/Http/' => app_path('/Http/'),
         ],'http');
@@ -79,7 +79,7 @@ class YeomanServiceProvider extends ServiceProvider
         //发布资源文件
         $this->publishes([
             __DIR__.'/../assets/' => public_path('/'),
-        ], 'public');
+        ], 'public');*/
     }
 
     /**

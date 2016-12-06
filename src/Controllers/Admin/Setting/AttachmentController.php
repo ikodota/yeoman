@@ -1,6 +1,6 @@
 <?php
 
-namespace Ikodota\Yeoman\Http\Controllers\Admin\Setting;
+namespace Ikodota\Yeoman\Controllers\Admin\Setting;
 
 use Illuminate\Support\Facades\Gate;
 use Ikodota\Yeoman\Models\Settings;

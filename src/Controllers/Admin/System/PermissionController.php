@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin\System;
+namespace Ikodota\Yeoman\Controllers\Admin\System;
 
-use App\Models\Role;
-use App\Models\Permission;
+use Ikodota\Yeoman\Models\Role;
+use Ikodota\Yeoman\Models\Permission;
 use Illuminate\Http\Request;
-use App\Http\Requests\Admin\PermissionForm;
-use App\Http\Controllers\Admin\Controller;
+use Ikodota\Yeoman\Requests\Admin\PermissionForm;
+use Ikodota\Yeoman\Controllers\Admin\Controller;
 use Illuminate\Support\Facades\Gate;
 
 class PermissionController extends Controller

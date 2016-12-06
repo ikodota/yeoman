@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin\System;
+namespace Ikodota\Yeoman\Controllers\Admin\System;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Response;
-use App\Http\Controllers\Admin\Controller;
+use Ikodota\Yeoman\Controllers\Admin\Controller;
 use Rap2hpoutre\LaravelLogViewer\LaravelLogViewer as LaravelLogViewer;
 use Illuminate\Support\Facades\Gate;
 

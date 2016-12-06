@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\System;
+namespace Ikodota\Yeoman\Controllers\Admin\System;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\Controller;

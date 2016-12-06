@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin\System;
+namespace Ikodota\Yeoman\Controllers\Admin\System;
 
-use App\Models\Menu;
-use App\Models\MenuTree;
+use Ikodota\Yeoman\Models\Menu;
+use Ikodota\Yeoman\Models\MenuTree;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Admin\Controller;
+use Ikodota\Yeoman\Controllers\Admin\Controller;
 
 class MenuController extends Controller
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Ikodota\Yeoman\Http\Controllers\Admin\Auth;
+namespace Ikodota\Yeoman\Controllers\Admin\Auth;
 
 use Illuminate\Http\Request;
-use Ikodota\Yeoman\Http\Controllers\Admin\Controller;
+use Ikodota\Yeoman\Controllers\Admin\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 class ForgotPasswordController extends Controller

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin\System;
+namespace Ikodota\Yeoman\Controllers\Admin\System;
 
-use App\Models\Audit;
+use Ikodota\Yeoman\Models\Audit;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Admin\Controller;
+use Ikodota\Yeoman\Controllers\Admin\Controller;
 use Illuminate\Support\Facades\Gate;
 
 class AuditController extends Controller

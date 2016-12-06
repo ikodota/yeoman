@@ -1,11 +1,11 @@
 <?php
 
-namespace Ikodota\Yeoman\Http\Controllers\Admin\Setting;
+namespace Ikodota\Yeoman\Controllers\Admin\Setting;
 
-use App\Http\Requests\Admin\WebsiteForm;
+use Ikodota\Yeoman\Requests\Admin\WebsiteForm;
 use Ikodota\Yeoman\Models\Settings;
 use Illuminate\Http\Request;
-use Ikodota\Yeoman\Http\Controllers\Admin\Controller;
+use Ikodota\Yeoman\Controllers\Admin\Controller;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Gate;
 use League\Flysystem\Exception;

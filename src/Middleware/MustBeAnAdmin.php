@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace Ikodota\Yeoman\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Factory as AuthFactory;

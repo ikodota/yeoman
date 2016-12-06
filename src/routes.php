@@ -1,7 +1,7 @@
 <?php
 
 
-Route::group(['prefix' => 'admin','namespace' => 'App\Http\Controllers\Admin'],function ($router)
+Route::group(['prefix' => 'admin','namespace' => 'Ikodota\Yeoman\Controllers\Admin'],function ($router)
 {
     //admin auth
     $router->get('login', 'Auth\LoginController@showLoginForm')->name('admin.login');

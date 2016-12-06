@@ -1,9 +1,9 @@
 <?php
 
-namespace Ikodota\Yeoman\Http\Controllers\Admin\Setting;
+namespace Ikodota\Yeoman\Controllers\Admin\Setting;
 
 use Illuminate\Http\Request;
-use Ikodota\Yeoman\Http\Controllers\Admin\Controller;
+use Ikodota\Yeoman\Controllers\Admin\Controller;
 
 class EmailController extends Controller
 {

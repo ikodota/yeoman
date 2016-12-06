@@ -1,9 +1,9 @@
 <?php
 
-namespace Ikodota\Yeoman\Http\Controllers\Admin;
+namespace Ikodota\Yeoman\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Ikodota\Yeoman\Http\Controllers\Admin\Controller;
+use Ikodota\Yeoman\Controllers\Admin\Controller;
 
 class DashboardController extends Controller
 {
