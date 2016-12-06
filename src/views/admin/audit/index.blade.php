@@ -1,4 +1,4 @@
-@extends('layouts.admin_page')
+@extends('yeoman::layouts.admin_page')
 
 @section('title', '数据跟踪')
 
@@ -16,8 +16,8 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    @include('admin.message.success');
-                    @include('admin.message.error');
+                    @include('yeoman::admin.message.success');
+                    @include('yeoman::admin.message.error');
 
                     <!-- start project list -->
                     <table class="table table-striped projects">
@@ -114,5 +114,5 @@
 @stop
 
 @section('body_dialog')
-    @include('admin.modal.default',['model_title'=>'操作提示','model_content'=>'你确定要删除这名角色吗?'])
+    @include('yeoman::admin.modal.default',['model_title'=>'操作提示','model_content'=>'你确定要删除这名角色吗?'])
 @stop

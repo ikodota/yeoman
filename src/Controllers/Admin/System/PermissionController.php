@@ -23,7 +23,7 @@ class PermissionController extends Controller
             abort(403);
         }
         $permissions = Permission::paginate(10);
-        return view('admin.permission.index', compact('permissions'));
+        return view('yeoman::admin.permission.index', compact('permissions'));
     }
 
     /**
@@ -33,7 +33,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        return view('admin.permission.create');
+        return view('yeoman::admin.permission.create');
     }
 
     /**
@@ -79,7 +79,7 @@ class PermissionController extends Controller
             $permission_roles_names[]= $role->name;
         }
 
-        return view('admin.permission.roles', compact('permission','roles','permission_roles_names'));
+        return view('yeoman::admin.permission.roles', compact('permission','roles','permission_roles_names'));
     }
 
     /**
@@ -102,7 +102,7 @@ class PermissionController extends Controller
         foreach ($permission_roles as $role){
             $role_permission_names[]= $role->name;
         }
-        return view('admin.permission.edit',  compact('permission','roles','permission_roles_names'));
+        return view('yeoman::admin.permission.edit',  compact('permission','roles','permission_roles_names'));
     }
 
     /**

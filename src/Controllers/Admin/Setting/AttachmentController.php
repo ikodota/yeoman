@@ -4,7 +4,7 @@ namespace Ikodota\Yeoman\Controllers\Admin\Setting;
 
 use Illuminate\Support\Facades\Gate;
 use Ikodota\Yeoman\Models\Settings;
-use Ikodota\Yeoman\Http\Controllers\Admin\Controller;
+use Ikodota\Yeoman\Controllers\Admin\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 
@@ -21,7 +21,7 @@ class AttachmentController extends Controller
         foreach ($settings as $setting){
             $arr[$setting->key] = $setting->value;
         }
-        return view('admin.setting.attachment')->with($arr);
+        return view('yeoman::admin.setting.attachment')->with($arr);
     }
 
     /**

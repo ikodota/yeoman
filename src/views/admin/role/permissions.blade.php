@@ -1,4 +1,4 @@
-@extends('layouts.admin_page')
+@extends('yeoman::layouts.admin_page')
 
 @section('title', '角色权限')
 
@@ -27,9 +27,9 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    @include('admin.message.success');
-                    @include('admin.message.error');
-                    <form class="form-horizontal" action="{{ route('system.role.give',$role->id) }}" method="post" enctype="multipart/form-data">
+                    @include('yeoman::admin.message.success');
+                    @include('yeoman::admin.message.error');
+                    <form class="form-horizontal" action="{{ route('admin.role.give',$role->id) }}" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                         <input type="hidden" name="_method" value="put">
                         <p>为角色分配权限</p>
@@ -52,7 +52,7 @@
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-8 col-sm-12 col-xs-12 col-md-offset-3">
-                                <button type="button" class="btn btn-default" onclick="javascript:history.back('{{ route('system.role.index') }}');return false;">{{ trans('common.button.back') }}</button>
+                                <button type="button" class="btn btn-default" onclick="javascript:history.back('{{ route('admin.role.index') }}');return false;">{{ trans('common.button.back') }}</button>
                                 <button type="submit" class="btn btn-success">{{ trans('common.button.submit') }}</button>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
 @section('script')
     <script src="{{ asset('vendors/iCheck/icheck.min.js') }} "></script>
     <script>
-        $('#sidebar-menu').attr('data-customurl','admin/system/role')
+        $('#sidebar-menu').attr('data-customurl','{{ route('admin.role.index') }}')
         $(function () { $("[data-toggle='popover']").popover(); });
     </script>
     @stack('script')

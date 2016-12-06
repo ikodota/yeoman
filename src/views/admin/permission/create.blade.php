@@ -1,4 +1,4 @@
-@extends('layouts.admin_page')
+@extends('yeoman::layouts.admin_page')
 
 @section('title', '权限管理')
 
@@ -12,7 +12,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <form class="form-horizontal" action="{{ route('system.permission.store') }}" method="post" enctype="multipart/form-data">
+                    <form class="form-horizontal" action="{{ route('admin.permission.store') }}" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                         <div class="form-group">
                             <label for="name" class="col-sm-3 control-label">权限标识</label>
@@ -38,7 +38,7 @@
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-8 col-sm-12 col-xs-12 col-md-offset-3">
-                                <button type="reset" class="btn btn-default" onclick="javascript:history.back('{{ route('system.permission.index') }}');return false;">{{ trans('common.button.back') }}</button>
+                                <button type="reset" class="btn btn-default" onclick="javascript:history.back('{{ route('admin.permission.index') }}');return false;">{{ trans('common.button.back') }}</button>
                                 <button type="submit" class="btn btn-success">{{ trans('common.button.submit') }}</button>
                             </div>
                         </div>
@@ -50,3 +50,9 @@
     </div>
 @stop
 
+@section('script')
+    <script>
+        $('#sidebar-menu').attr('data-customurl','{{ route('admin.permission.index') }}')
+    </script>
+    @stack('script')
+@stop

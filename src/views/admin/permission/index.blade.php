@@ -1,4 +1,4 @@
-@extends('layouts.admin_page')
+@extends('yeoman::layouts.admin_page')
 
 @section('title', '权限管理')
 
@@ -27,10 +27,10 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    @include('admin.message.success');
-                    @include('admin.message.error');
+                    @include('yeoman::admin.message.success');
+                    @include('yeoman::admin.message.error');
                     <p>权限列表及编辑等操作</p>
-                    <a href="{{route('system.permission.create')}}" class="btn btn-success">创建权限</a>
+                    <a href="{{route('admin.permission.create')}}" class="btn btn-success">创建权限</a>
                     <!-- start project list -->
                     <table class="table table-striped projects">
                         <thead>
@@ -59,9 +59,9 @@
                                 {{ $permission->description }}
                             </td>
                             <td>
-                                <a href="{{route('system.permission.show',$permission->id)}}" class="btn btn-primary btn-xs"><i class="fa fa-users"></i> Roles </a>
-                                <a href="{{route('system.permission.edit',$permission->id)}}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                                <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#defalutModal" data-url="{{route('system.permission.destroy',$permission->id)}}>
+                                <a href="{{route('admin.permission.show',$permission->id)}}" class="btn btn-primary btn-xs"><i class="fa fa-users"></i> Roles </a>
+                                <a href="{{route('admin.permission.edit',$permission->id)}}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                                <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#defalutModal" data-url="{{route('admin.permission.destroy',$permission->id)}}>
                                     <i class="fa fa-trash-o"></i> Delete
                                 </a>
                             </td>
@@ -120,5 +120,5 @@
 @stop
 
 @section('body_dialog')
-    @include('admin.modal.default',['model_title'=>'操作提示','model_content'=>'你确定要删除这个权限吗?'])
+    @include('yeoman::admin.modal.default',['model_title'=>'操作提示','model_content'=>'你确定要删除这个权限吗?'])
 @stop

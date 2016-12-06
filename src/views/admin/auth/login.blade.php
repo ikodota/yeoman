@@ -1,12 +1,5 @@
 @extends('yeoman::layouts.admin_page')
 
-@section('css')
-    <link rel="stylesheet" href="{{ asset('vendors/iCheck/square/blue.css') }}">
-    @yield('css')
-@stop
-
-@section('body_class', 'login-page')
-
 @section('body')
     <div class="login-box">
         <div class="login-logo">
@@ -70,7 +63,16 @@
     </div><!-- /.login-box -->
 @stop
 
-@section('js')
+
+
+@section('style')
+    <link rel="stylesheet" href="{{ asset('vendors/iCheck/skins/flat/green.css') }}">
+    @stack('style')
+@stop
+
+
+
+@section('script')
     <script src="{{ asset('vendors/iCheck/icheck.min.js') }}"></script>
     <script>
         $(function () {
@@ -81,5 +83,6 @@
             });
         });
     </script>
-    @yield('js')
+    @stack('script')
 @stop
+

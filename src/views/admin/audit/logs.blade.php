@@ -1,4 +1,4 @@
-@extends('layouts.admin_page')
+@extends('yeoman::layouts.admin_page')
 
 @section('title', '数据日志')
 
@@ -37,7 +37,7 @@
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-8 col-sm-12 col-xs-12 col-md-offset-3">
-                            <button type="button" class="btn btn-default" onclick="javascript:history.back('{{ route('system.audit.index') }}');return false;">{{ trans('common.button.back') }}</button>
+                            <button type="button" class="btn btn-default" onclick="javascript:history.back('{{ route('admin.auditing') }}');return false;">{{ trans('common.button.back') }}</button>
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
 
 @section('script')
     <script>
-        $('#sidebar-menu').attr('data-customurl','admin/system/audit')
+        $('#sidebar-menu').attr('data-customurl','{{ route('admin.auditing') }}')
     </script>
     @stack('script')
 @stop

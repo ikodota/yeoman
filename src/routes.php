@@ -17,7 +17,7 @@ Route::group(['middleware' => ['web'],'prefix' => 'admin','namespace' => 'Ikodot
     //dashboard
     //$router->get('', 'DashboardController@index')->name('system.role.give');
     route::get('',function(){
-         route::redirect('/dashboard');
+         return redirect('/admin/dashboard');
     });
     $router->get('dashboard', 'DashboardController@index')->name('admin.dashboard.index');
 

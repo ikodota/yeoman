@@ -31,7 +31,6 @@ class Role extends Model
         'description' => 'The description  was defined as  "{new.description}"  ',
     ];
 
-
     protected $authGuardName='admin';
 
 

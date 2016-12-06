@@ -43,7 +43,7 @@ class LogViewerController extends Controller
             'files' => LaravelLogViewer::getFiles(true),
             'current_file' => LaravelLogViewer::getFileName()
         ]);*/
-        return View::make('admin.logviewer.index', [
+        return View::make('yeoman::admin.logviewer.index', [
             'logs' => $logs,
             'files' => LaravelLogViewer::getFiles(true),
             'current_file' => LaravelLogViewer::getFileName()

@@ -1,4 +1,4 @@
-@extends('layouts.admin_page')
+@extends('yeoman::layouts.admin_page')
 
 @section('title', 'Website setting')
 
@@ -12,7 +12,8 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    @include('layouts.admin_backmessage');
+                    @include('yeoman::admin.message.error')
+                    @include('yeoman::admin.message.success')
                     <!-- form start -->
                     <form class="form-horizontal form-label-left"  method="post" action="">
                         {{ csrf_field() }}
@@ -123,7 +124,7 @@
 @stop
 
 @section('body_dialog')
-    @include('vendor.uploader.uploader')
+    @include('yeoman::widgets.uploader.uploader')
 
 @stop
 
@@ -142,7 +143,7 @@
     {{--<script src="{{ asset('vendors/bootstrap-switch-master/dist/js/bootstrap-switch.min.js') }}"></script>--}}
     <script src="{{ asset('vendors/switchery/dist/switchery.min.js') }} "></script>
     <!-- jQuery Tags Input -->
-    <script src="{{ asset('vendors/jquery.tagsinput/src/jquery.tagsinput.js') }}"></script>
+    <script src="{{ asset('vendors/jquery.tagsinput/dist/jquery.tagsinput.js') }}"></script>
     <!-- jQuery Tags Input -->
     <script>
 

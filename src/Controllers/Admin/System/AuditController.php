@@ -17,7 +17,7 @@ class AuditController extends Controller
 
         $audits = Audit::orderby('created_at','desc')->paginate(5);
 
-        return view('admin.audit.index', compact('audits'));
+        return view('yeoman::admin.audit.index', compact('audits'));
     }
 
 
@@ -34,6 +34,6 @@ class AuditController extends Controller
         $audits = $item->audits->sortBy('created_at')->reverse();
         */
 
-        return view('admin.audit.logs', compact('audits'));
+        return view('yeoman::admin.audit.logs', compact('audits'));
     }
 }

@@ -21,7 +21,7 @@ class WebsiteController extends Controller
         foreach ($settings as $setting){
             $arr[$setting->key] = $setting->value;
         }
-        return view('admin.setting.website')->with($arr);
+        return view('yeoman::admin.setting.website')->with($arr);
     }
 
 

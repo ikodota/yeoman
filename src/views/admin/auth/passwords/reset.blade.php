@@ -1,4 +1,4 @@
-@extends('adminlte::master')
+@extends('yeoman::layouts.admin_page')
 
 @section('adminlte_css')
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/css/auth.css') }}">

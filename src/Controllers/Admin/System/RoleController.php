@@ -26,7 +26,7 @@ class RoleController extends Controller
         }
 
         $roles = Role::paginate(10);
-        return view('admin.role.index', compact('roles'));
+        return view('yeoman::admin.role.index', compact('roles'));
     }
 
     /**
@@ -40,7 +40,7 @@ class RoleController extends Controller
         if (Gate::foruser($this->loggedUser())->denies('admin.role.retrieve')) {
             abort(403);
         }
-        return view('admin.role.create');
+        return view('yeoman::admin.role.create');
     }
 
     /**
@@ -90,7 +90,7 @@ class RoleController extends Controller
         }
 
 
-        return view('admin.role.permissions', compact('role','permissions','role_permissions_names'));
+        return view('yeoman::admin.role.permissions', compact('role','permissions','role_permissions_names'));
     }
 
     /**
@@ -105,7 +105,7 @@ class RoleController extends Controller
             abort(403);
         }
         $role = Role::find($id);
-        return view('admin.role.edit', compact('role'));
+        return view('yeoman::admin.role.edit', compact('role'));
     }
 
     /**

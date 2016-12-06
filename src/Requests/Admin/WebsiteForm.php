@@ -25,7 +25,7 @@ class WebsiteForm extends FormRequest
     {
         return [
             'website_name' => 'required|max:255',
-            'website_domain' => 'required|active_url',
+            //'website_domain' => 'required|active_url',
         ];
     }
 
