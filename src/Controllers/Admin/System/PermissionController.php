@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Ikodota\Yeoman\Requests\Admin\PermissionForm;
 use Ikodota\Yeoman\Controllers\Admin\Controller;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\URL;
 
 class PermissionController extends Controller
 {
@@ -17,13 +18,16 @@ class PermissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        if (Gate::foruser($this->loggedUser())->denies('admin.permission.retrieve')) {
+        if (Gate::foruser($this->loggedUser())->denies('admin.permission.read')) {
             abort(403);
         }
-        $permissions = Permission::paginate(10);
-        return view('yeoman::admin.permission.index', compact('permissions'));
+        $keyword=$request->get('keyword');
+        $permissions = Permission::where('display_name', 'like', '%'.$keyword.'%')
+            ->orWhere('name', 'like', '%'.$keyword.'%')
+            ->paginate(10);
+        return view('yeoman::backend.permission.index', compact('permissions'));
     }
 
     /**
@@ -33,7 +37,11 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        return view('yeoman::admin.permission.create');
+        $referer_url = URL::previous();
+        if (Gate::foruser($this->loggedUser())->denies('admin.permission.read')) {
+            abort(403);
+        }
+        return view('yeoman::backend.permission.create',compact('referer_url'));
     }
 
     /**
@@ -48,16 +56,18 @@ class PermissionController extends Controller
             abort(403);
         }
         $data = $request->all();
+        $referer_url=$data['_referer'];
         unset($data['_token']);
         unset($data['_method']);
+        unset($data['_referer']);
         try {
             if (Permission::create($data)) {
-                return redirect()->route('system.permission.index')->with('success','新增权限成功');
+                return redirect()->to($referer_url)->with('success','新增权限成功');
             }
         }
         catch (\Exception $e)
         {
-            return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
+            return redirect()->to($referer_url)->withErrors(array('error' => $e->getMessage()))->withInput();
         }
     }
 
@@ -79,7 +89,7 @@ class PermissionController extends Controller
             $permission_roles_names[]= $role->name;
         }
 
-        return view('yeoman::admin.permission.roles', compact('permission','roles','permission_roles_names'));
+        return view('yeoman::backend.permission.roles', compact('permission','roles','permission_roles_names'));
     }
 
     /**
@@ -90,7 +100,8 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        if (Gate::foruser($this->loggedUser())->denies('admin.permission.retrieve')) {
+        $referer_url = URL::previous();
+        if (Gate::foruser($this->loggedUser())->denies('admin.permission.read')) {
             abort(403);
         }
         $permission = Permission::find($id);
@@ -102,7 +113,7 @@ class PermissionController extends Controller
         foreach ($permission_roles as $role){
             $role_permission_names[]= $role->name;
         }
-        return view('yeoman::admin.permission.edit',  compact('permission','roles','permission_roles_names'));
+        return view('yeoman::backend.permission.edit',  compact('permission','roles','permission_roles_names','referer_url'));
     }
 
     /**
@@ -118,16 +129,19 @@ class PermissionController extends Controller
             abort(403);
         }
         $data = $request->all();
+        $referer_url=$data['_referer'];
+
         unset($data['_token']);
         unset($data['_method']);
+        unset($data['_referer']);
         try {
             if (Permission::where('id', $id)->update($data)) {
-                return redirect()->route('system.permission.index')->with('success','编辑权限成功');
+                return redirect()->to($referer_url)->withSuccess('编辑权限成功');
             }
         }
         catch (\Exception $e)
         {
-            return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
+            return redirect()->to($referer_url)->withErrors(array('error' => $e->getMessage()))->withInput();
         }
     }
 

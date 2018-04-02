@@ -16,6 +16,6 @@ class DashboardController extends Controller
     public function index()
     {
         //dd('当前用户名：'.auth()->user()->name.'是否为管理员：'.auth()->user()->isAdmin());
-        return view('yeoman::admin.dashboard');
+        return view('yeoman::backend.dashboard');
     }
 }

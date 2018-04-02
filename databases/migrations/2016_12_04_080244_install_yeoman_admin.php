@@ -26,19 +26,6 @@ class InstallYeomanAdmin extends Migration
             $table->string('token')->index();
             $table->timestamp('created_at')->nullable();
         });*/
-        Schema::create('admins', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name')->comment('用户名');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
-        });
-        Schema::create('admin_password_resets', function (Blueprint $table) {
-            $table->string('email')->index();
-            $table->string('token')->index();
-            $table->timestamp('created_at')->nullable();
-        });
         // Create table for storing roles
         Schema::create('roles', function (Blueprint $table) {
             $table->increments('id');
@@ -66,6 +53,7 @@ class InstallYeomanAdmin extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('display_name')->nullable();
+            $table->string('class')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
         });
@@ -83,23 +71,18 @@ class InstallYeomanAdmin extends Migration
             $table->primary(['permission_id', 'role_id']);
         });
 
-        Schema::create('menu_class', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name', 50);
-            $table->string('display_name', 50);
-            $table->timestamps();
-        });
+
         Schema::create('menus', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->smallInteger('parent_id')->default(0);
             $table->string('icon', 50);
-            $table->string('name', 50);
             $table->string('display_name', 50);
-            $table->string('route', 50);
+            $table->string('url', 50);
             $table->string('permission', 50);
-            $table->tinyInteger('sort')->default(0)->index();
-            $table->tinyInteger('is_hide')->default(0);
+            $table->integer('sort')->default(0);
+            $table->tinyInteger('is_display')->default(0);
+            $table->tinyInteger('is_system')->default(0);
             $table->timestamps();
         });
 
@@ -111,7 +94,7 @@ class InstallYeomanAdmin extends Migration
             $table->timestamps();
         });
 
-        Schema::create('audits', function (Blueprint $table) {
+        /*Schema::create('audits', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('type');
             $table->morphs('auditable');
@@ -121,7 +104,7 @@ class InstallYeomanAdmin extends Migration
             $table->string('route')->nullable();
             $table->ipAddress('ip_address')->nullable();
             $table->timestamp('created_at')->nullable();
-        });
+        });*/
     }
 
     /**
@@ -139,9 +122,9 @@ class InstallYeomanAdmin extends Migration
         Schema::dropIfExists('permissions');
         Schema::dropIfExists('role_user');
         Schema::dropIfExists('roles');
-        Schema::dropIfExists('menu_class');
+        //Schema::dropIfExists('menu_class');
         Schema::dropIfExists('menus');
         Schema::dropIfExists('settings');
-        Schema::dropIfExists('audits');
+        //Schema::dropIfExists('audits');
     }
 }

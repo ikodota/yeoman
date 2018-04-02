@@ -21,7 +21,7 @@ class LogViewerController extends Controller
     public function index()
     {
 
-        if (Gate::foruser($this->loggedUser())->denies('admin.logviewer.retrieve')) {
+        if (Gate::foruser($this->loggedUser())->denies('admin.logviewer.read')) {
             abort(403);
         }
 
@@ -43,7 +43,7 @@ class LogViewerController extends Controller
             'files' => LaravelLogViewer::getFiles(true),
             'current_file' => LaravelLogViewer::getFileName()
         ]);*/
-        return View::make('yeoman::admin.logviewer.index', [
+        return View::make('yeoman::backend.logviewer.index', [
             'logs' => $logs,
             'files' => LaravelLogViewer::getFiles(true),
             'current_file' => LaravelLogViewer::getFileName()

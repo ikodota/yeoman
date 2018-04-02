@@ -11,13 +11,13 @@ class AuditController extends Controller
 {
     public  function index()
     {
-        if (Gate::foruser($this->loggedUser())->denies('admin.audit.retrieve')) {
+        if (Gate::foruser($this->loggedUser())->denies('admin.audit.read')) {
             abort(403);
         }
 
         $audits = Audit::orderby('created_at','desc')->paginate(5);
 
-        return view('yeoman::admin.audit.index', compact('audits'));
+        return view('yeoman::backend.audit.index', compact('audits'));
     }
 
 
@@ -34,6 +34,6 @@ class AuditController extends Controller
         $audits = $item->audits->sortBy('created_at')->reverse();
         */
 
-        return view('yeoman::admin.audit.logs', compact('audits'));
+        return view('yeoman::backend.audit.logs', compact('audits'));
     }
 }

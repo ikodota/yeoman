@@ -12,8 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
-
+    
     public function __construct()
     {
         //后端采用basic认证时使用
@@ -24,6 +23,7 @@ class Controller extends BaseController
 
         //前后台统一的登陆登出时使用(laravel自带)
         //$this->middleware('auth:'.$this->guardName());
+
     }
     protected function guardName()
     {

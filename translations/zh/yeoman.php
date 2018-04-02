@@ -5,6 +5,10 @@
  *=======================================*/
 
 return [
+    'bool'  => [
+        'yes' => '是',
+        'no'=>'否',
+    ],
     'common'    => [
         'button'               => [
             'submit'    => '提交',
@@ -14,6 +18,7 @@ return [
             'edit'      => '编辑',
             'upload'    => '上传',
             'back'      => '返回',
+            'delete'    => '删除',
 
         ],
         'option'                =>[
@@ -28,25 +33,30 @@ return [
             'yes'       => '是',
             'no'        => '否',
         ],
+        'data'               => [
+            'no_record'    => '没有数据',
+
+        ],
         'text'                  =>[
-            'tag'       => '新增标签'
+            'tag'       => '新增标签',
+            'operation' => '操作'
         ]
+    ],
+    'menu'  => [
+        'menu_list' => '菜单列表',
+        'menu_name' =>'菜单名称',
+        'icon' =>'菜单图标',
+        'url' =>'菜单链接',
+        'visit_permission' =>'访问权限',
+        'is_system' =>'系统菜单',
+        'is_display' =>'是否显示',
+        'create_menu' => '创建菜单',
+        'edit_menu' => '编辑菜单',
+        'parent_menu'  => '父级菜单'
     ],
     'system'    => [
         'menu'          => [
-            'system'                => '系统',
-            'dashboard'             => '控制台',
-            'menus'                 => '菜单管理',
-            'permissions'           => '权限管理',
-            'roles'                 => '角色管理',
-            'admins'                => '管理员',
-            'data_auditing'         => '数据审查',
-            'data_backup'           => '数据库备份',
-            'system_log'            => '系统日志',
-            'settings'              => '设置',
-            'website_setting'       => '网站设置',
-            'attachment_setting'    => '附件设置',
-            'email_setting'         => '邮箱设置',
+            'create'                => '创建菜单',
         ],
         'success'       => [
             'give_role_permissions'         => '角色权限更新成功.',

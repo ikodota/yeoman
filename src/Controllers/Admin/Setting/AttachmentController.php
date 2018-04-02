@@ -21,7 +21,7 @@ class AttachmentController extends Controller
         foreach ($settings as $setting){
             $arr[$setting->key] = $setting->value;
         }
-        return view('yeoman::admin.setting.attachment')->with($arr);
+        return view('yeoman::backend.setting.attachment')->with($arr);
     }
 
     /**
@@ -31,7 +31,7 @@ class AttachmentController extends Controller
     public function save(Request $request)
     {
 
-        if (Gate::foruser($this->loggedUser())->deny('admin.attachment.config')) {
+        if (Gate::foruser($this->loggedUser())->denies('admin.setting.attachment')) {
             abort(403);
         }
         //neet save in database;

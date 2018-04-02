@@ -6,6 +6,8 @@ use Ikodota\Yeoman\Models\Menu;
 use Ikodota\Yeoman\Models\MenuTree;
 use Illuminate\Http\Request;
 use Ikodota\Yeoman\Controllers\Admin\Controller;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\URL;
 
 class MenuController extends Controller
 {
@@ -18,7 +20,7 @@ class MenuController extends Controller
     {
         //$menus = Menu::paginate(25);
         $menus = MenuTree::createLevelTree(Menu::all());
-        return view('yeoman::admin.menu.index', compact('menus'));
+        return view('yeoman::backend.menu.index', compact('menus'));
     }
 
     /**
@@ -28,9 +30,10 @@ class MenuController extends Controller
      */
     public function create()
     {
+        $referer_url = URL::previous();
         $tree = MenuTree::createLevelTree(Menu::all());
 
-        return view('yeoman::admin.menu.create', compact('tree'));
+        return view('yeoman::backend.menu.create', compact('tree','referer_url'));
     }
 
     /**
@@ -42,15 +45,17 @@ class MenuController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        $referer_url=$data['_referer'];
         unset($data['_token']);
         unset($data['_method']);
+        unset($data['_referer']);
 
         try {
             if (Menu::create($data)) {
-                return redirect()->back()->withSuccess("新增菜单成功");
+                return redirect()->to($referer_url)->with('success','新增菜单成功');
             }
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
+            return redirect()->to($referer_url)->withErrors(array('error' => $e->getMessage()))->withInput();
         }
     }
 
@@ -73,10 +78,14 @@ class MenuController extends Controller
      */
     public function edit($id)
     {
+        $referer_url = URL::previous();
+        if (Gate::foruser($this->loggedUser())->denies('admin.menu.read')) {
+            abort(403);
+        }
         $menu = Menu::find($id);
         $tree = MenuTree::createLevelTree(Menu::all());
 
-        return view('yeoman::admin.menu.edit', compact('menu', 'tree'));
+        return view('yeoman::backend.menu.edit', compact('menu', 'tree','referer_url'));
     }
 
     /**
@@ -89,15 +98,17 @@ class MenuController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
+        $referer_url=$data['_referer'];
         unset($data['_method']);
         unset($data['_token']);
+        unset($data['_referer']);
 
         try {
             if (Menu::where('id', $id)->update($data)) {
-                return redirect()->back()->withSuccess('编辑菜单成功');
+                return redirect()->to($referer_url)->withSuccess("编辑菜单成功");
             }
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
+            return redirect()->to($referer_url)->withErrors(array('error' => $e->getMessage()))->withInput();
         }
     }
 

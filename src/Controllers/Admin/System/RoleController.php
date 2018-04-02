@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Ikodota\Yeoman\Requests\Admin\RoleForm;
 use Ikodota\Yeoman\Controllers\Admin\Controller;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\URL;
 
 class RoleController extends Controller
 {
@@ -21,12 +22,12 @@ class RoleController extends Controller
     public function index()
     {
 
-        if (Gate::foruser($this->loggedUser())->denies('admin.role.retrieve')) {
+        if (Gate::foruser($this->loggedUser())->denies('admin.role.read')) {
             abort(403);
         }
 
         $roles = Role::paginate(10);
-        return view('yeoman::admin.role.index', compact('roles'));
+        return view('yeoman::backend.role.index', compact('roles'));
     }
 
     /**
@@ -36,11 +37,12 @@ class RoleController extends Controller
      */
     public function create()
     {
+        $referer_url = URL::previous();
         //如果不具备具体的操作权限
-        if (Gate::foruser($this->loggedUser())->denies('admin.role.retrieve')) {
+        if (Gate::foruser($this->loggedUser())->denies('admin.role.read')) {
             abort(403);
         }
-        return view('yeoman::admin.role.create');
+        return view('yeoman::backend.role.create',compact('referer_url'));
     }
 
     /**
@@ -55,16 +57,18 @@ class RoleController extends Controller
             abort(403);
         }
         $data = $request->all();
+        $referer_url=$data['_referer'];
         unset($data['_token']);
         unset($data['_method']);
+        unset($data['_referer']);
         try {
             if (Role::create($data)) {
-                return redirect('admin/system/role')->withSuccess('新增角色成功');
+                return redirect()->to($referer_url)->withSuccess('新增角色成功');
             }
         }
         catch (\Exception $e)
         {
-            return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
+            return redirect()->to($referer_url)->withErrors(array('error' => $e->getMessage()))->withInput();
         }
     }
 
@@ -90,7 +94,7 @@ class RoleController extends Controller
         }
 
 
-        return view('yeoman::admin.role.permissions', compact('role','permissions','role_permissions_names'));
+        return view('yeoman::backend.role.permissions', compact('role','permissions','role_permissions_names'));
     }
 
     /**
@@ -101,11 +105,12 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        if (Gate::foruser($this->loggedUser())->denies('admin.role.retrieve')) {
+        $referer_url = URL::previous();
+        if (Gate::foruser($this->loggedUser())->denies('admin.role.read')) {
             abort(403);
         }
         $role = Role::find($id);
-        return view('yeoman::admin.role.edit', compact('role'));
+        return view('yeoman::backend.role.edit', compact('role','referer_url'));
     }
 
     /**
@@ -122,8 +127,10 @@ class RoleController extends Controller
         }
 
         $data = $request->all();
+        $referer_url=$data['_referer'];
         unset($data['_token']);
         unset($data['_method']);
+        unset($data['_referer']);
         try {
             $role=Role::find($id);
            /* $role->name=$data['name'];
@@ -132,12 +139,12 @@ class RoleController extends Controller
             $result=$role->update($data);
             //if (Role::where('id', $id)->update($data)) {
             if ($result) {
-                return redirect()->route('system.role.index')->withSuccess(trans('system.success.edit_role'));
+                return redirect()->to($referer_url)->withSuccess(trans('system.success.edit_role'));
             }
         }
         catch (\Exception $e)
         {
-            return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
+            return redirect()->to($referer_url)->withErrors(array('error' => $e->getMessage()))->withInput();
         }
     }
 

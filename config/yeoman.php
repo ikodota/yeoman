@@ -16,10 +16,6 @@ return [
 
     'title' => 'Yeoman Admin Control Panel',
 
-    'admin_path' => 'admin',     //eg: http://localhost/[admin]
-
-    'admin_guard' => 'admin',   //后台独立的登陆认证设定，区别于前台登陆或其他平台。
-
     /*
     |--------------------------------------------------------------------------
     | Logo
@@ -31,7 +27,10 @@ return [
 
     'logo_mini' => '',
 
-
+    /**
+     * 支持 gentelella,adminlte,sb-admin
+     */
+    'admin_theme' => 'adminlte',
     /*
     |--------------------------------------------------------------------------
     | Layout
@@ -70,7 +69,7 @@ return [
     |
     */
 
-    'dashboard_url' => 'admin/dashboard',
+    'dashboard_url' => 'admin',
 
     'logout_url' => 'logout',
 
@@ -84,4 +83,31 @@ return [
 
     'password_email_url'=>'admin/password/email',
 
+    /*
+    |--------------------------------------------------------------------------
+    | Menu Items
+    |--------------------------------------------------------------------------
+    |
+    | Specify your menu items to display in the left sidebar. Each menu item
+    | should have a text and and a URL. You can also specify an icon from
+    | Font Awesome. A string instead of an array represents a header in sidebar
+    | layout. The 'can' is a filter on Laravel's built in Gate functionality.
+    |
+    */
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Plugins Initialization
+    |--------------------------------------------------------------------------
+    |
+    | Choose which JavaScript plugins should be included. At this moment,
+    | only DataTables is supported as a plugin. Set the value to true
+    | to include the JavaScript file from a CDN via a script tag.
+    |
+    */
+
+    'plugins' => [
+        'datatables' => true,
+    ],
 ];
